@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DialerViewController">
+            <connections>
+                <outlet property="addressField" destination="U4R-Vx-fys" id="8ZT-CW-2nV"/>
+                <outlet property="backspaceButton" destination="11X-8p-F5b" id="sGC-6v-zgg"/>
+                <outlet property="bgHeader" destination="kUf-2S-jDM" id="wCX-A1-Zaq"/>
+                <outlet property="btnVideoCall" destination="Vba-QM-o9q" id="j1h-cb-Hsg"/>
+                <outlet property="callButton" destination="g8d-xM-SVH" id="8U7-TY-lMr"/>
+                <outlet property="eightButton" destination="dPA-qg-i0t" id="FZQ-eT-BxS"/>
+                <outlet property="fiveButton" destination="ccT-Un-eZe" id="Tbt-xU-vbX"/>
+                <outlet property="fourButton" destination="9CZ-r8-1e9" id="SKI-ef-9zo"/>
+                <outlet property="hashButton" destination="nZk-W7-kfm" id="hPm-O4-tdk"/>
+                <outlet property="icClear" destination="BvP-ya-lPh" id="BtR-bK-Hd9"/>
+                <outlet property="imgLogoSmall" destination="ZzR-na-TTe" id="WWN-5z-M7f"/>
+                <outlet property="lbAccount" destination="aCg-t9-nLr" id="cPT-iE-JpU"/>
+                <outlet property="lbSepa123" destination="1Mj-4w-HYr" id="5Vd-wf-RLa"/>
+                <outlet property="lbSepa456" destination="VpF-o7-9zs" id="hKj-dC-BpZ"/>
+                <outlet property="lbSepa789" destination="yV7-sI-52a" id="25D-tb-iId"/>
+                <outlet property="lbStatus" destination="1NR-Dq-rVA" id="0J5-tT-JE6"/>
+                <outlet property="nineButton" destination="41d-vJ-QgE" id="7Cr-HT-Lng"/>
+                <outlet property="oneButton" destination="SLk-NG-txP" id="nQu-aK-thT"/>
+                <outlet property="padView" destination="aB1-J5-JaV" id="ThI-yx-cgZ"/>
+                <outlet property="sevenButton" destination="h53-da-CnG" id="kmp-Kz-5ke"/>
+                <outlet property="sixButton" destination="F0T-fG-OOU" id="18y-nA-ZH2"/>
+                <outlet property="starButton" destination="HEV-VG-wZK" id="3BS-1w-mCa"/>
+                <outlet property="threeButton" destination="djP-pG-Lxa" id="re2-bO-IG0"/>
+                <outlet property="twoButton" destination="VQN-Ne-key" id="uOd-Sj-khg"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewNumber" destination="CDG-33-Vgp" id="VRn-hc-I2O"/>
+                <outlet property="viewStatus" destination="eUa-vZ-laT" id="c1E-IE-Mcj"/>
+                <outlet property="zeroButton" destination="dac-u3-aU2" id="h2Z-FQ-mGx"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="eUa-vZ-laT">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_header.jpg" id="kUf-2S-jDM">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="35"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="150" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aCg-t9-nLr">
+                            <rect key="frame" x="112" y="7" width="95" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1NR-Dq-rVA" userLabel="Status">
+                            <rect key="frame" x="239" y="4" width="73" height="35"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_transparent.png" id="ZzR-na-TTe">
+                            <rect key="frame" x="8" y="5" width="61" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                    </subviews>
+                </view>
+                <view contentMode="scaleToFill" id="aB1-J5-JaV" userLabel="pad">
+                    <rect key="frame" x="0.0" y="93" width="320" height="317"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="SLk-NG-txP" userLabel="1">
+                            <rect key="frame" x="64" y="0.0" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.40000001000000002" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="1"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_one_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_one_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="tlo-fH-nby"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="VQN-Ne-key" userLabel="2">
+                            <rect key="frame" x="137" y="0.0" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="2"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_two_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_two_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="REA-e0-fmA"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="djP-pG-Lxa" userLabel="3">
+                            <rect key="frame" x="210" y="0.0" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="3"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_three_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_three_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="7dU-Zz-rzH"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Mj-4w-HYr">
+                            <rect key="frame" x="64" y="60" width="200" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="9CZ-r8-1e9" userLabel="4">
+                            <rect key="frame" x="64" y="63" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="4"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_four_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_four_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="Xi8-L9-mqD"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ccT-Un-eZe" userLabel="5">
+                            <rect key="frame" x="137" y="63" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_five_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_five_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="ON1-As-G5H"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="F0T-fG-OOU" userLabel="6">
+                            <rect key="frame" x="210" y="63" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="6"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_six_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_six_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="G3B-gY-paD"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VpF-o7-9zs">
+                            <rect key="frame" x="64" y="123" width="200" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="h53-da-CnG" userLabel="7">
+                            <rect key="frame" x="64" y="128" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="7"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_seven_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="IdN-XC-8Dx"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dPA-qg-i0t" userLabel="8">
+                            <rect key="frame" x="137" y="128" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="8"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_eight_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_eight_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="2Wl-iu-Dsq"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="41d-vJ-QgE" userLabel="9">
+                            <rect key="frame" x="210" y="128" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="9"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_nine_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_nine_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="boK-QT-qiC"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yV7-sI-52a">
+                            <rect key="frame" x="64" y="188" width="200" height="1"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="10" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HEV-VG-wZK" userLabel="*">
+                            <rect key="frame" x="64" y="196" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Star"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_star_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_star_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="KIF-el-xq5"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="dac-u3-aU2" userLabel="0">
+                            <rect key="frame" x="137" y="196" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_zero_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="numpad_zero_hover"/>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="FZX-rN-oTQ"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" clearsContextBeforeDrawing="NO" tag="11" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nZk-W7-kfm" userLabel="#">
+                            <rect key="frame" x="210" y="196" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Hash"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <state key="normal" image="numpad_hash_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="btnNumberPressed:" destination="-1" eventType="touchUpInside" id="UuH-AE-qWb"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Vba-QM-o9q" userLabel="callButton">
+                            <rect key="frame" x="59" y="247" width="70" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Call"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" image="video_call_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="video_call_hover.png"/>
+                            <connections>
+                                <action selector="btnVideoCallPress:" destination="-1" eventType="touchUpInside" id="HzC-JQ-bNR"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="g8d-xM-SVH" userLabel="callButton">
+                            <rect key="frame" x="132" y="247" width="70" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Call"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" image="call_default.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="call_hover.png"/>
+                            <connections>
+                                <action selector="btnCallPressed:" destination="-1" eventType="touchUpInside" id="IHb-rv-nfl"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="11X-8p-F5b" userLabel="backspaceButton">
+                            <rect key="frame" x="205" y="247" width="70" height="70"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="numpad_clear.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onBackspaceClick:" destination="-1" eventType="touchUpInside" id="CCZ-Vu-7rg"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view clipsSubviews="YES" contentMode="scaleToFill" id="CDG-33-Vgp" userLabel="dialer">
+                    <rect key="frame" x="0.0" y="35" width="320" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" adjustsFontSizeToFit="NO" minimumFontSize="5" id="U4R-Vx-fys" userLabel="addressField" customClass="UIAddressTextField">
+                            <rect key="frame" x="70" y="0.0" width="206" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                            <accessibility key="accessibilityConfiguration" label="Enter an address"/>
+                            <color key="textColor" red="0.078431372550000003" green="0.078431372550000003" blue="0.078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="alphabet" returnKeyType="join"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BvP-ya-lPh">
+                            <rect key="frame" x="256" y="10" width="40" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="backspace-green.png"/>
+                            <connections>
+                                <action selector="icClearClick:" destination="-1" eventType="touchUpInside" id="rgn-nb-lW5"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-88" y="-53"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="background_header.jpg" width="1028" height="180"/>
+        <image name="backspace-green.png" width="150" height="150"/>
+        <image name="call_default.png" width="201" height="201"/>
+        <image name="call_hover.png" width="201" height="201"/>
+        <image name="logo_transparent.png" width="1216" height="573"/>
+        <image name="numpad_clear.png" width="201" height="201"/>
+        <image name="numpad_eight_default.png" width="261" height="261"/>
+        <image name="numpad_eight_hover" width="16" height="16"/>
+        <image name="numpad_five_default.png" width="261" height="261"/>
+        <image name="numpad_five_hover" width="16" height="16"/>
+        <image name="numpad_four_default.png" width="261" height="261"/>
+        <image name="numpad_four_hover" width="16" height="16"/>
+        <image name="numpad_hash_default.png" width="261" height="261"/>
+        <image name="numpad_nine_default.png" width="261" height="261"/>
+        <image name="numpad_nine_hover" width="16" height="16"/>
+        <image name="numpad_one_default.png" width="261" height="261"/>
+        <image name="numpad_one_hover" width="16" height="16"/>
+        <image name="numpad_seven_default.png" width="261" height="261"/>
+        <image name="numpad_six_default.png" width="261" height="261"/>
+        <image name="numpad_six_hover" width="16" height="16"/>
+        <image name="numpad_star_default.png" width="261" height="261"/>
+        <image name="numpad_star_hover" width="16" height="16"/>
+        <image name="numpad_three_default.png" width="261" height="261"/>
+        <image name="numpad_three_hover" width="16" height="16"/>
+        <image name="numpad_two_default.png" width="261" height="261"/>
+        <image name="numpad_two_hover" width="16" height="16"/>
+        <image name="numpad_zero_default.png" width="261" height="261"/>
+        <image name="numpad_zero_hover" width="16" height="16"/>
+        <image name="video_call_default.png" width="201" height="201"/>
+        <image name="video_call_hover.png" width="201" height="201"/>
+    </resources>
+</document>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Angry Birds</string>
+		<key>file</key>
+		<string>angry_birds.mp3</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Chirtmas</string>
+		<key>file</key>
+		<string>chirtmas.mp3</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Din Don</string>
+		<key>file</key>
+		<string>din_don.mp3</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Htc Tone</string>
+		<key>file</key>
+		<string>htc_tone.mp3</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>New Nokia Remix</string>
+		<key>file</key>
+		<string>new_nokia_remix.mp3</string>
+	</dict>
+</array>
+</plist>

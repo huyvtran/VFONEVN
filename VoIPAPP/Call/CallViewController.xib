@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CallViewController">
+            <connections>
+                <outlet property="bgCall" destination="Hpi-Xi-py3" id="2PC-OS-66f"/>
+                <outlet property="bgOutgoing" destination="MKZ-sg-jyW" id="YJr-Qf-lbt"/>
+                <outlet property="icOutgoingHangup" destination="Iuo-dh-hGY" id="RXN-Cw-7j7"/>
+                <outlet property="icOutgoingMute" destination="bwa-jU-kKp" id="aJ8-Ig-U5A"/>
+                <outlet property="icOutgoingSpeaker" destination="gJG-d3-1kx" id="EJl-2l-UzS"/>
+                <outlet property="iconHangup" destination="oQW-5F-S09" id="Cxd-iO-DjE"/>
+                <outlet property="iconHold" destination="gJb-Jv-xZN" id="QvI-gi-sVR"/>
+                <outlet property="iconMiniKeypad" destination="wPK-fk-QhE" id="n7G-OX-xRp"/>
+                <outlet property="iconMute" destination="0Eq-n5-ZQK" id="AyR-BZ-nAd"/>
+                <outlet property="iconSpeaker" destination="yDj-hH-sf9" id="hYp-jB-pXQ"/>
+                <outlet property="imgAvatar" destination="mta-UY-4rQ" id="2bW-a0-9ce"/>
+                <outlet property="imgCallState" destination="Ycr-04-QzK" id="8aQ-av-hPu"/>
+                <outlet property="imgOutgoingAvatar" destination="MzP-hB-U8m" id="px5-pw-eqz"/>
+                <outlet property="lbConnect" destination="5zO-GM-s6R" id="gbk-aa-nls"/>
+                <outlet property="lbDuration" destination="yLu-Hh-Ube" id="8zE-Ov-naN"/>
+                <outlet property="lbName" destination="KXs-Qg-HuX" id="6g3-Aw-vFU"/>
+                <outlet property="lbOutgoingName" destination="tP5-Zx-rq3" id="85n-KK-Lcn"/>
+                <outlet property="lbOutgoingPhone" destination="MXP-9t-RdX" id="Qak-Xd-ypL"/>
+                <outlet property="lbOutgoingState" destination="gQP-ql-hey" id="z6g-cN-PAQ"/>
+                <outlet property="lbPhone" destination="lLu-rS-lB1" id="uSD-Ir-Kqj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewCall" destination="Y3b-3u-vjg" id="7CR-uO-7n6"/>
+                <outlet property="viewOutgoing" destination="IAq-Gx-bif" id="paN-KE-zN5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" id="Y3b-3u-vjg">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="call-bg.png" id="Hpi-Xi-py3">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000001192092896" tag="15" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khải Lê" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="19" id="KXs-Qg-HuX" userLabel="nameLabel">
+                            <rect key="frame" x="65" y="23" width="191" height="23"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="33"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="036 343 0737" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lLu-rS-lB1">
+                            <rect key="frame" x="83" y="64" width="164" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="14" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01:34" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" id="yLu-Hh-Ube" userLabel="durationLabel">
+                            <rect key="frame" x="92" y="101" width="146" height="46"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đã kết nối" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5zO-GM-s6R">
+                            <rect key="frame" x="96" y="155" width="138" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" tag="7" contentMode="scaleToFill" image="no_avatar.png" id="mta-UY-4rQ" userLabel="avatarImage">
+                            <rect key="frame" x="116" y="202" width="99" height="99"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Contact avatar">
+                                <accessibilityTraits key="traits" image="YES" notEnabled="YES"/>
+                                <bool key="isElement" value="YES"/>
+                            </accessibility>
+                        </imageView>
+                        <button opaque="NO" tag="53" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yDj-hH-sf9" userLabel="speakerButton">
+                            <rect key="frame" x="72" y="407" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Speaker"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="speaker_normal.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="iconSpeakerClick:" destination="-1" eventType="touchUpInside" id="XFp-3L-60J"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="57" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wPK-fk-QhE" userLabel="numpadButton">
+                            <rect key="frame" x="257" y="407" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                            <state key="normal" image="keypad_normal.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="iconMiniKeypadClick:" destination="-1" eventType="touchUpInside" id="QJG-2X-96f"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="19" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gJb-Jv-xZN" userLabel="callPauseButton">
+                            <rect key="frame" x="202" y="407" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Pause"/>
+                            <state key="normal" image="hold_normal.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="iconHoldCallClick:" destination="-1" eventType="touchUpInside" id="nks-FO-TCc"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="52" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0Eq-n5-ZQK" userLabel="microButton">
+                            <rect key="frame" x="8" y="407" width="46" height="46"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Micro"/>
+                            <inset key="titleEdgeInsets" minX="0.0" minY="38" maxX="0.0" maxY="0.0"/>
+                            <state key="normal" image="mute_normal.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="iconMuteClick:" destination="-1" eventType="touchUpInside" id="bbE-wc-o2P"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="58" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oQW-5F-S09" userLabel="hangupButton">
+                            <rect key="frame" x="130" y="400" width="60" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Hangup"/>
+                            <state key="normal" image="end_call_def.png">
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted" image="end_call_act.png"/>
+                            <connections>
+                                <action selector="iconHangupClick:" destination="-1" eventType="touchUpInside" id="d5Y-n2-08G"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" id="IAq-Gx-bif">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="call-bg.png" id="MKZ-sg-jyW">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Khải Lê iOs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tP5-Zx-rq3">
+                            <rect key="frame" x="46" y="21" width="229" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0363430737" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MXP-9t-RdX">
+                            <rect key="frame" x="89" y="59" width="146" height="21"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="state_audio_call.png" id="Ycr-04-QzK">
+                            <rect key="frame" x="151" y="121" width="18" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Đang đổ chuông..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gQP-ql-hey">
+                            <rect key="frame" x="46" y="140" width="229" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_avatar.png" id="MzP-hB-U8m">
+                            <rect key="frame" x="105" y="186" width="110" height="110"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="gJG-d3-1kx">
+                            <rect key="frame" x="69" y="344" width="39" height="39"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="speaker_normal.png"/>
+                            <connections>
+                                <action selector="icOutgoingSpeakerClick:" destination="-1" eventType="touchUpInside" id="Xzn-KZ-B5v"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Iuo-dh-hGY">
+                            <rect key="frame" x="130" y="331" width="65" height="65"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="end_call_def.png"/>
+                            <connections>
+                                <action selector="icOutgoingHangupCallClick:" destination="-1" eventType="touchUpInside" id="3zi-oP-S5c"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="bwa-jU-kKp">
+                            <rect key="frame" x="216" y="341" width="40" height="40"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="mute_normal.png"/>
+                            <connections>
+                                <action selector="icOutgoingMuteClick:" destination="-1" eventType="touchUpInside" id="Jh6-e8-caZ"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-243" y="25"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="call-bg.png" width="1028" height="1828"/>
+        <image name="end_call_act.png" width="201" height="201"/>
+        <image name="end_call_def.png" width="201" height="201"/>
+        <image name="hold_normal.png" width="102" height="102"/>
+        <image name="keypad_normal.png" width="102" height="102"/>
+        <image name="mute_normal.png" width="102" height="102"/>
+        <image name="no_avatar.png" width="201" height="201"/>
+        <image name="speaker_normal.png" width="102" height="102"/>
+        <image name="state_audio_call.png" width="201" height="201"/>
+    </resources>
+</document>
