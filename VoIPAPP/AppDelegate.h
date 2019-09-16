@@ -146,7 +146,8 @@ typedef enum eTypeHistory{
 - (void)playRingbackTone;
 - (void)stopRingbackTone;
 - (void)playBeepSound;
-- (void) my_send_request;
+- (void)startPjsuaForApp;
+- (void)checkToRestartPjsuaForApp;
 
 @end
 

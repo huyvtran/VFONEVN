@@ -26,7 +26,7 @@
 #define DEFAULT_RTP_PORT	4000
 
 //  Khai Le
-char* replaceWord(char *source, char *oldW, char *newW);
+char* replaceSubStringInString(char *source, char *oldW, char *newW);
 //  -----
 
 /* Internal prototypes */
@@ -641,7 +641,7 @@ static pjsip_module pjsua_options_handler =
 };
 
 //  Khai Le's functions
-char* replaceWord(char *source, char *oldW, char *newW) {
+char* replaceSubStringInString(char *source, char *oldW, char *newW) {
     char *result;
     int i, cnt = 0;
     unsigned long newWlen = strlen(newW);
@@ -698,7 +698,69 @@ static pj_bool_t mod_pjsua_on_rx_request(pjsip_rx_data *rdata)
         char package[PJSIP_MAX_PKT_LEN] = "";
         strcpy(package, rdata->pkt_info.packet);
 
-        char *result = strstr(package, "a=fingerprint");
+//        char *result = strstr(package, "a=fingerprint");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
+//
+//        result = strstr(package, "a=ice-ufrag");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
+//        result = strstr(package, "a=ice-pwd");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
+//
+        char *result = strstr(package, "a=setup");
         if (result != NULL) {
             char substr[1000] = "";
             char *empty = "";
@@ -706,7 +768,7 @@ static pj_bool_t mod_pjsua_on_rx_request(pjsip_rx_data *rdata)
                 char c = result[i];
                 if (c == '\n') {
                     strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
+                    char *rs = replaceSubStringInString(package, substr, empty);
                     strcpy(package, rs);
                     strcpy(rdata->pkt_info.packet, package);
                     rdata->pkt_info.len = strlen(rs);
@@ -718,198 +780,125 @@ static pj_bool_t mod_pjsua_on_rx_request(pjsip_rx_data *rdata)
                 }
             }
         }
-
-        result = strstr(package, "a=ice-ufrag");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
-        result = strstr(package, "a=ice-pwd");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
+////
+//        result = strstr(package, "a=connection");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//                    break;
+//                }
+//            }
+//        }
+////
+//        result = strstr(package, "a=msid-semantic:WMS");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
         
-        result = strstr(package, "a=setup");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
-        
-        result = strstr(package, "a=connection");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    break;
-                }
-            }
-        }
-        
-        result = strstr(package, "a=msid-semantic:WMS");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
-        
-        result = strstr(package, "a=candidate");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
-        
-        result = strstr(package, "a=candidate");
-        if (result != NULL) {
-            char substr[1000] = "";
-            char *empty = "";
-            for (int i=0; i<strlen(result); i++) {
-                char c = result[i];
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, empty);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    
-                    break;
-                }
-            }
-        }
+//        result = strstr(package, "a=candidate");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
+//
+//        result = strstr(package, "a=candidate");
+//        if (result != NULL) {
+//            char substr[1000] = "";
+//            char *empty = "";
+//            for (int i=0; i<strlen(result); i++) {
+//                char c = result[i];
+//                if (c == '\n') {
+//                    strncpy(substr, result, i+1);
+//                    char *rs = replaceSubStringInString(package, substr, empty);
+//                    strcpy(package, rs);
+//                    strcpy(rdata->pkt_info.packet, package);
+//                    rdata->pkt_info.len = strlen(rs);
+//
+//                    rdata->msg_info.msg_buf= rs;
+//                    rdata->msg_info.len = (int)strlen(rs);
+//
+//                    break;
+//                }
+//            }
+//        }
         
         result = strstr(package, "m=audio");
         if (result != NULL) {
-            pj_bool_t skip = PJ_FALSE;
-            
-            char teststr[50] = "";
-            char audiostr[1000] = "m=audio ";
-            
-            char substr[1000] = "";
-            char *empty = "m=audio 10640 RTP/AVP 8 0 101\n\r";
+            char substr[200] = "";
+            int count = 0;
             for (int i=0; i<strlen(result); i++) {
                 char c = result[i];
-                
-                if (i >= 8 && skip == PJ_FALSE) {
-                    if (c == ' ') {
-                        skip = PJ_TRUE;
-                        strcat(audiostr, teststr);
-                        strcat(audiostr, " RTP/AVP 8 0 101\n\r");
+                if (c == ' ') {
+                    if (count < 2) {
+                        count = count + 1;
+                        continue;
                     }else{
+                        break;
+                    }
+                }else{
+                    if (count == 2) {
                         char s[2];
                         s[0] = c;
-                        strcat(teststr, s);
+                        strcat(substr, s);
                     }
                 }
-                
-                if (c == '\n') {
-                    strncpy(substr, result, i+1);
-                    char *rs = replaceWord(package, substr, audiostr);
-                    strcpy(package, rs);
-                    strcpy(rdata->pkt_info.packet, package);
-                    rdata->pkt_info.len = strlen(rs);
-                    
-                    rdata->msg_info.msg_buf= rs;
-                    rdata->msg_info.len = (int)strlen(rs);
-                    break;
-                }
+            }
+            
+            if(strlen(substr) > 0) {
+                char *rs = replaceSubStringInString(package, substr, "RTP/AVP");
+                strcpy(package, rs);
+                strcpy(rdata->pkt_info.packet, package);
+                rdata->pkt_info.len = strlen(rs);
+                rdata->msg_info.msg_buf= rs;
+                rdata->msg_info.len = (int)strlen(rs);
+            }else{
+                printf("LU PA");
             }
 //            strcat(package, "\r\na=rtpmap:8 PCMA/8000");
 //            strcat(package, "\r\na=rtpmap:0 PCMU/8000");
 //            strcat(package, "\r\na=rtpmap:101 telephone-event/8000\r\n");
-            
-            strcpy(rdata->pkt_info.packet, package);
-            rdata->pkt_info.len = strlen(package);
-            
-            rdata->msg_info.msg_buf= package;
-            rdata->msg_info.len = (int)strlen(package);
-            //  strcpy(rdata->pkt_info.packet, package);
         }
         
         processed = pjsua_call_on_incoming(rdata);

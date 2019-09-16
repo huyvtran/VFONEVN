@@ -180,7 +180,6 @@ AppDelegate      *app;
     
     app = self;
     current_call_id = -1;
-    //  [self startPjsuaForApp];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:)
                                                  name:kReachabilityChangedNotification object:nil];
@@ -752,35 +751,46 @@ AppDelegate      *app;
 
 #pragma mark - PJSIP
 - (void)startPjsuaForApp {
-    
-    pjsua_create();
+    NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:key_port];
+    if (![AppUtil isNullOrEmpty: port]) {
+        pjsua_create();
+        
+        pjsua_config ua_cfg;
+        pjsua_logging_config log_cfg;
+        pjsua_media_config media_cfg;
+        
+        pjsua_config_default(&ua_cfg);
+        pjsua_logging_config_default(&log_cfg);
+        pjsua_media_config_default(&media_cfg);
+        
+        ua_cfg.cb.on_incoming_call = &on_incoming_call;
+        ua_cfg.cb.on_call_media_state = &on_call_media_state;
+        ua_cfg.cb.on_call_state = &on_call_state;
+        ua_cfg.cb.on_reg_state = &on_reg_state;
+        ua_cfg.cb.on_reg_started = &on_reg_started;
+        ua_cfg.cb.on_call_transfer_status = &on_call_transfer_status;
+        
+        pjsua_init(&ua_cfg, &log_cfg, &media_cfg);
+        
+        pjsua_transport_config transportConfig;
+        pjsua_transport_config_default(&transportConfig);
+        transportConfig.port = [port intValue];
+        
+        pjsua_transport_create(PJSIP_TRANSPORT_UDP, &transportConfig, NULL);
+        //  pjsua_transport_create(PJSIP_TRANSPORT_TCP, &transportConfig, NULL);
+        //  ua_cfg.use_srtp = PJMEDIA_SRTP_OPTIONAL;
+        
+        pjsua_start();
+    }else{
+        NSLog(@"Port not found");
+    }
+}
 
-    pjsua_config ua_cfg;
-    pjsua_logging_config log_cfg;
-    pjsua_media_config media_cfg;
-    
-    pjsua_config_default(&ua_cfg);
-    pjsua_logging_config_default(&log_cfg);
-    pjsua_media_config_default(&media_cfg);
-    
-    ua_cfg.cb.on_incoming_call = &on_incoming_call;
-    ua_cfg.cb.on_call_media_state = &on_call_media_state;
-    ua_cfg.cb.on_call_state = &on_call_state;
-    ua_cfg.cb.on_reg_state = &on_reg_state;
-    ua_cfg.cb.on_reg_started = &on_reg_started;
-    ua_cfg.cb.on_call_transfer_status = &on_call_transfer_status;
-
-    pjsua_init(&ua_cfg, &log_cfg, &media_cfg);
-
-    pjsua_transport_config transportConfig;
-    pjsua_transport_config_default(&transportConfig);
-    transportConfig.port = 65400;
-
-    pjsua_transport_create(PJSIP_TRANSPORT_UDP, &transportConfig, NULL);
-    //  pjsua_transport_create(PJSIP_TRANSPORT_TCP, &transportConfig, NULL);
-    //  ua_cfg.use_srtp = PJMEDIA_SRTP_OPTIONAL;
-    
-    pjsua_start();
+- (void)checkToRestartPjsuaForApp {
+    if (pjsua_get_state() != PJSUA_STATE_NULL) {
+        pjsua_destroy();
+    }
+    [self startPjsuaForApp];
 }
 
 - (void)refreshSIPAccountRegistrationState {
@@ -1253,162 +1263,6 @@ static void on_call_transfer_status(pjsua_call_id call_id, int status_code, cons
     }
 }
 
-- (void) my_send_request
-{
-    pjsip_endpoint *g_endpt; /* SIP endpoint. */
-    
-    pjmedia_sock_info g_sock_info[MAX_MEDIA_CNT];   /* Socket info array */
-    pjmedia_transport *g_med_transport[MAX_MEDIA_CNT];  /* Media stream transport */
-    pjmedia_transport_info g_med_tpinfo[MAX_MEDIA_CNT];  /* Socket info for media */
-    pjmedia_sdp_session *local_sdp;
-    pjsip_inv_session *g_inv; /* Current invite session. */
-    pjsip_tx_data *tdata;
-    pj_status_t status;
-    
-    pjsip_dialog *dlg;
-    pj_str_t local_uri = pj_str((char *)[@"sip:150@signature.vfone.vn" UTF8String]);
-    pj_str_t dst_uri = pj_str((char *)[@"sip:151@signature.vfone.vn" UTF8String]);
-    
-    /* Must create a pool factory before we can allocate any memory. */
-    pj_caching_pool cp; /* Global pool factory. */
-    pj_caching_pool_init(&cp, &pj_pool_factory_default_policy, 0);
-    
-    /* Endpoint MUST be assigned a globally unique name.
-     * The name will be used as the hostname in Warning header.
-    */
-//    const pj_str_t *hostname;
-//    const char *endpt_name;
-//    /* For this implementation, we'll use hostname for simplicity */
-//    hostname = pj_gethostname();
-//    endpt_name = hostname->ptr;
-//
-//    pj_sockaddr addr;
-//    pj_sockaddr_init(AF, &addr, NULL, (pj_uint16_t)SIP_PORT);
-//
-//    status = pjsip_endpt_create(&cp.factory, endpt_name, &g_endpt);
-//    if (status != PJ_SUCCESS) {
-//        NSLog(@"----ERROR pjsip_endpt_create----");
-//    }
-//
-//    status = pjsip_udp_transport_start( g_endpt, &addr.ipv4, NULL, 1, NULL);
-//    if (status != PJ_SUCCESS) {
-//        NSLog(@"----ERROR pjsip_udp_transport_start----");
-//    }
-//
-//    /* Initialize 100rel support */
-//    status = pjsip_100rel_init_module(g_endpt);
-//    if (status != PJ_SUCCESS) {
-//        NSLog(@"----ERROR pjsip_100rel_init_module----");
-//    }
-    
-    /*
-     * Initialize media endpoint.
-     * This will implicitly initialize PJMEDIA too.
-     */
-    pjmedia_endpt *g_med_endpt; /* Media endpoint. */
-    status = pjmedia_endpt_create(&cp.factory, NULL, 1, &g_med_endpt);
-    //  status = pjmedia_endpt_create(&cp.factory, pjsip_endpt_get_ioqueue(g_endpt), 0, &g_med_endpt);
-    
-    status = pjmedia_codec_g711_init(g_med_endpt);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"----ERROR pjmedia_codec_g711_init----");
-    }
-    
-    /* Create UAC dialog */
-    status = pjsip_dlg_create_uac(pjsip_ua_instance(),
-                                              &local_uri,    /* local URI */
-                                              &local_uri,    /* local Contact */
-                                              &dst_uri,      /* remote URI */
-                                              &dst_uri,      /* remote target */
-                                              &dlg);         /* dialog */
-    if (status != PJ_SUCCESS) {
-        NSLog(@"----Unable to create UAC dialog----");
-    }
-    
-    /*
-    * Create media transport used to send/receive RTP/RTCP socket.
-    * One media transport is needed for each call. Application may
-    * opt to re-use the same media transport for subsequent calls.
-    */
-    for (int i = 0; i < PJ_ARRAY_SIZE(g_med_transport); ++i) {
-        status = pjmedia_transport_udp_create3(g_med_endpt, AF, NULL, NULL, RTP_PORT + i*2, 0, &g_med_transport[i]);
-        if (status != PJ_SUCCESS) {
-            NSLog(@"Unable to create media transport");
-        }
-        /*
-         * Get socket info (address, port) of the media transport. We will
-         * need this info to create SDP (i.e. the address and port info in
-         * the SDP).
-         */
-        pjmedia_transport_info_init(&g_med_tpinfo[i]);
-        pjmedia_transport_get_info(g_med_transport[i], &g_med_tpinfo[i]);
-        
-        pj_memcpy(&g_sock_info[i], &g_med_tpinfo[i].sock_info, sizeof(pjmedia_sock_info));
-    }
-    
-    /* Get the SDP body to be put in the outgoing INVITE, by asking media endpoint to create one for us.*/
-    status = pjmedia_endpt_create_sdp(g_med_endpt,   /* the media endpt */
-                                      dlg->pool,     /* pool. */
-                                      MAX_MEDIA_CNT, /* # of streams */
-                                      g_sock_info,   /* RTP sock info */
-                                      &local_sdp);   /* the SDP result */
-    
-    if (status != PJ_SUCCESS) {
-        NSLog(@"ERROR pjmedia_endpt_create_sdp");
-    }
-    
-    status = pjsip_inv_create_uac(dlg, local_sdp, 0, &g_inv);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"ERROR pjsip_inv_create_uac");
-    }
-    
-    /* Create initial INVITE request.
-    * This INVITE request will contain a perfectly good request and
-    * an SDP body as well.
-    */
-    status = pjsip_inv_invite(g_inv, &tdata);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"ERROR Create initial INVITE request");
-    }
-    
-    /* Send initial INVITE request.
-     * From now on, the invite session's state will be reported to us
-     * via the invite session callbacks.
-    */
-    status = pjsip_inv_send_msg(g_inv, tdata);
-    if (status != PJ_SUCCESS) {
-        NSLog(@"ERROR pjsip_inv_send_msg");
-    }
-    NSLog(@"LU PA --- THANH CONG LUON");
-//    pjsip_endpoint *endpt = pjsua_get_pjsip_endpt();
-//
-//    //  create method
-//    pjsip_method method;
-//    method.id = PJSIP_INVITE_METHOD;
-//    method.name = pj_str((char *)[@"INVITE" UTF8String]);
-//
-//    pj_str_t target_str = pj_str((char *)[@"sip:151@signature.vfone.vn:65400" UTF8String]);
-//    pj_str_t from_str = pj_str((char *)[@"sip:151@signature.vfone.vn:65400" UTF8String]);
-//    pj_str_t to_str = pj_str((char *)[@"sip:150@signature.vfone.vn:65400" UTF8String]);
-//    pj_str_t contact_str = pj_str((char *)[@"<sip:151signature.vfone.vn:65400;ob>" UTF8String]);
-//    pj_str_t text_str = pj_str((char *)[@"<sip:151signature.vfone.vn:65400;ob>" UTF8String]);
-//
-//    pj_status_t status;
-//    pjsip_tx_data *tdata;
-//    pjsip_transaction *tsx;
-//    // Create the request.
-//    pjsip_endpt_create_request(endpt, &method, &target_str, &from_str, &to_str, &contact_str, NULL, 10, NULL, &tdata);
-    
-//
-//    status = pjsip_endpt_create_request( endpt, ..., &tdata );
-//    // You may modify the message before sending it.
-//
-//    // Create transaction.
-//    status = pjsip_endpt_create_uac_tsx( endpt, &app_module, tdata, &tsx );
-//    // Send the request.
-//    status = pjsip_tsx_send_msg( tsx, tdata /*or NULL*/);
-}
-
 - (void)playRingbackTone {
     if (ringbackPlayer == nil) {
         /* Use this code to play an audio file */
@@ -1693,15 +1547,19 @@ static void on_call_transfer_status(pjsua_call_id call_id, int status_code, cons
     //show warning Microphone
     [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
         if (!granted) {
-            [self showWarningMicrophonePermisson];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showWarningMicrophonePermisson];
+            });
         }else{
-            [ProgressHUD backgroundColor: ProgressHUD_BG];
-            [ProgressHUD show:text_waiting Interaction:NO];
-            
-            NSString *params = SFM(@"username=%@", USERNAME);
-            
-            [WebServiceUtil getInstance].delegate = self;
-            [[WebServiceUtil getInstance] callWebServiceWithFunction:get_didlist_func withParams:params inBackgroundMode:TRUE];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [ProgressHUD backgroundColor: ProgressHUD_BG];
+                [ProgressHUD show:text_waiting Interaction:NO];
+                
+                NSString *params = SFM(@"username=%@", USERNAME);
+                
+                [WebServiceUtil getInstance].delegate = self;
+                [[WebServiceUtil getInstance] callWebServiceWithFunction:get_didlist_func withParams:params inBackgroundMode:TRUE];
+            });
         }
     }];
 }

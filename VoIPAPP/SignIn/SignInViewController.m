@@ -51,11 +51,6 @@
     port = @"";
     
     [self registerObservers];
-    
-    tfAccountID.text = @"150";
-    tfPassword.text = @"wulgrov2ZfIPddzcBUdC";
-    domain = @"signature.vfone.vn";
-    port = @"65400";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -70,9 +65,6 @@
 }
 
 - (IBAction)btnSignInPress:(UIButton *)sender {
-    [self tryLoginToWebAccount];
-    return;
-    
     if ([AppUtil isNullOrEmpty: tfAccountID.text] || [AppUtil isNullOrEmpty: tfPassword.text]) {
         [self.view makeToast:pls_fill_full_info duration:2.0 position:CSToastPositionCenter];
         return;
@@ -849,6 +841,12 @@
         if ([port isKindOfClass:[NSNumber class]]) {
             port = SFM(@"%d", [port intValue]);
         }
+        //  Lấy thông tin domain port thành công thì startPjsua với port vừa get đc
+        [[NSUserDefaults standardUserDefaults] setObject:port forKey:key_port];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        
+        [appDelegate checkToRestartPjsuaForApp];
+        
         [self startTimerToCheckRegisterSIP];
         
         NSDictionary *accInfo = [[NSDictionary alloc] initWithObjectsAndKeys:domain, @"domain", port, @"port", tfAccountID.text, @"account", tfPassword.text, @"password", nil];
@@ -887,11 +885,6 @@
         [tfAccountID becomeFirstResponder];
     }
     return TRUE;
-}
-
-- (void)tryLoginToWebAccount {
-    NSDictionary *accInfo = [[NSDictionary alloc] initWithObjectsAndKeys:@"signature.vfone.vn", @"domain", @"65400", @"port", @"150", @"account", @"wulgrov2ZfIPddzcBUdC", @"password", nil];
-    [appDelegate registerSIPAccountWithInfo: accInfo];
 }
 
 @end

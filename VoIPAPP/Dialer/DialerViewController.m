@@ -68,20 +68,11 @@
     [self checkCurrentSIPRegistrationState];
     
     //  update token of device if not yet
-    if (!appDelegate.updateTokenSuccess && ![AppUtil isNullOrEmpty: appDelegate.deviceToken])
-    {
+    if (!appDelegate.updateTokenSuccess && ![AppUtil isNullOrEmpty: appDelegate.deviceToken]){
         [appDelegate updateCustomerTokenIOS];
     }
-    
-    UIButton *test = [[UIButton alloc] initWithFrame:CGRectMake(20, 20, 100, 40)];
-    test.backgroundColor = UIColor.blackColor;
-    [test addTarget:self action:@selector(testAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview: test];
 }
 
-- (void)testAction {
-    [appDelegate my_send_request];
-}
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
