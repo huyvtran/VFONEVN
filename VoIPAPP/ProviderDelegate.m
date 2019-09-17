@@ -93,8 +93,6 @@
 	update.supportsUngrouping = TRUE;
 	update.hasVideo = video;
     
-	// Report incoming call to system
-	NSLog(@"CallKit: report new incoming call");
 	[self.provider reportNewIncomingCallWithUUID:uuid
 										  update:update
 									  completion:^(NSError *error) {

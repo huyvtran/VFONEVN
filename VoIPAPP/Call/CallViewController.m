@@ -121,6 +121,46 @@
 }
 
 - (IBAction)icOutgoingSpeakerClick:(UIButton *)sender {
+    if ([DeviceUtil isConnectedEarPhone]) {
+        TypeOutputRoute curRoute = [DeviceUtil getCurrentRouteForCall];
+        if (curRoute == eEarphone) {
+            BOOL result = [DeviceUtil tryToEnableSpeakerWithEarphone];
+            if (!result) {
+                [self.view makeToast:text_failed duration:1.0 position:CSToastPositionCenter style:appDelegate.errorStyle];
+                return;
+            }
+            [sender setImage:[UIImage imageNamed:@"ic_speaker_act"] forState:UIControlStateNormal];
+            [self.view makeToast:text_speaker_is_on duration:1.0 position:CSToastPositionCenter];
+        }else{
+            BOOL result = [DeviceUtil tryToConnectToEarphone];
+            if (!result) {
+                [self.view makeToast:text_failed duration:1.0 position:CSToastPositionCenter style:appDelegate.errorStyle];
+                return;
+            }
+            [sender setImage:[UIImage imageNamed:@"ic_speaker_ble_act"] forState:UIControlStateNormal];
+            [self.view makeToast:text_speaker_is_off duration:1.0 position:CSToastPositionCenter];
+        }
+    }else{
+        TypeOutputRoute curRoute = [DeviceUtil getCurrentRouteForCall];
+        if (curRoute == eReceiver) {
+            BOOL result = [DeviceUtil enableSpeakerForCall: TRUE];
+            if (!result) {
+                [self.view makeToast:text_failed duration:1.0 position:CSToastPositionCenter style:appDelegate.errorStyle];
+                return;
+            }
+            [sender setImage:[UIImage imageNamed:@"speaker_enable"] forState:UIControlStateNormal];
+            [self.view makeToast:text_speaker_is_on duration:1.0 position:CSToastPositionCenter];
+            
+        }else{
+            BOOL result = [DeviceUtil enableSpeakerForCall: FALSE];
+            if (!result) {
+                [self.view makeToast:text_failed duration:1.0 position:CSToastPositionCenter style:appDelegate.errorStyle];
+                return;
+            }
+            [sender setImage:[UIImage imageNamed:@"speaker_normal"] forState:UIControlStateNormal];
+            [self.view makeToast:text_speaker_is_off duration:1.0 position:CSToastPositionCenter];
+        }
+    }
 }
 
 - (IBAction)icOutgoingHangupCallClick:(UIButton *)sender {
@@ -285,7 +325,8 @@
 - (void)updateButtonsWithCallState: (NSString *)call_state {
     if ([call_state isEqualToString: CALL_INV_STATE_CALLING] || [call_state isEqualToString: CALL_INV_STATE_DISCONNECTED])
     {
-        icOutgoingMute.enabled = icOutgoingSpeaker.enabled = FALSE;
+        icOutgoingMute.enabled = FALSE;
+        icOutgoingSpeaker.enabled = TRUE;
         
     }else if ([call_state isEqualToString: CALL_INV_STATE_EARLY]) {
         icOutgoingMute.enabled = icOutgoingSpeaker.enabled = TRUE;

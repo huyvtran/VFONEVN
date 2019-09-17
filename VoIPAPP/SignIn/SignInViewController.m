@@ -110,6 +110,9 @@
 - (void)registrationSIPAccountSuccessfully {
     [WriteLogsUtil writeLogContent:SFM(@">>>>>>>>>>>>>>>>>>> [%s] <<<<<<<<<<<<<<<<<<<<<<<<", __FUNCTION__)];
     
+    [[AVAudioSession sharedInstance] requestRecordPermission:^(BOOL granted) {
+    }];
+    
     [[NSUserDefaults standardUserDefaults] setObject:tfAccountID.text forKey:key_login];
     [[NSUserDefaults standardUserDefaults] setObject:tfPassword.text forKey:key_password];
     [[NSUserDefaults standardUserDefaults] setObject:domain forKey:key_domain];
@@ -796,17 +799,26 @@
     NSString *password = [info objectForKey:@"password"];
     if (![AppUtil isNullOrEmpty: account] && ![AppUtil isNullOrEmpty: password] && ![AppUtil isNullOrEmpty: port] && ![AppUtil isNullOrEmpty: domain])
     {
+        [[NSUserDefaults standardUserDefaults] setObject:port forKey:key_port];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [appDelegate checkToRestartPjsuaForApp];
+        
         tfAccountID.text = account;
         tfPassword.text = password;
 
         [self startTimerToCheckRegisterSIP];
         
         NSDictionary *accInfo = [[NSDictionary alloc] initWithObjectsAndKeys:domain, @"domain", port, @"port", account, @"account", password, @"password", nil];
-        [appDelegate registerSIPAccountWithInfo: accInfo];
+        [self performSelector:@selector(registerSIPAccountAfterRestartCore:) withObject:accInfo afterDelay:0.5];
+        
     }else{
         [ProgressHUD dismiss];
         [self.view makeToast:cannot_detect_QRCode duration:2.0 position:CSToastPositionCenter];
     }
+}
+
+- (void)registerSIPAccountAfterRestartCore: (NSDictionary *)accInfo {
+    [appDelegate registerSIPAccountWithInfo: accInfo];
 }
 
 - (void)startTimerToCheckRegisterSIP {
@@ -850,7 +862,7 @@
         [self startTimerToCheckRegisterSIP];
         
         NSDictionary *accInfo = [[NSDictionary alloc] initWithObjectsAndKeys:domain, @"domain", port, @"port", tfAccountID.text, @"account", tfPassword.text, @"password", nil];
-        [appDelegate registerSIPAccountWithInfo: accInfo];
+        [self performSelector:@selector(registerSIPAccountAfterRestartCore:) withObject:accInfo afterDelay:0.5];
     }
 }
 

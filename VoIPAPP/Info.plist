@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.6</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>8</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -47,6 +47,8 @@
 	<string>Ứng dụng muốn truy cập danh bạ của bạn để thực hiện cuộc gọi với bạn bè</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Ứng dụng muốn truy cập micro của bạn để thực hiện cuộc gọi</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Ứng dụng muốn truy cập ảnh của bạn để thực hiện chức năng đăng nhập với QRCode</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>INStartVideoCallIntent</string>

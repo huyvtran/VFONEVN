@@ -183,7 +183,6 @@ AppDelegate      *app;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkNetworkStatus:)
                                                  name:kReachabilityChangedNotification object:nil];
-    
     return YES;
 }
 
@@ -215,10 +214,13 @@ AppDelegate      *app;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
+    //  Kiểm tra thử đang có cuộc gọi hay không? Để kiểm tra trường hợp bấm gọi từ call history của thiết bị
+    [[UNUserNotificationCenter currentNotificationCenter] removeAllDeliveredNotifications];
+
     int num_call = pjsua_call_get_count();
     if (num_call == 0) {
         [self refreshSIPRegistration];
-        
+
         AccountState accState = [self checkSipStateOfAccount];
         //  kiếm tra có phải từ phone call history mở lên không
         NSString *phoneNumber = [[NSUserDefaults standardUserDefaults] objectForKey:UserActivity];
@@ -230,13 +232,13 @@ AppDelegate      *app;
                 NSString *port = [[NSUserDefaults standardUserDefaults] objectForKey:key_port];
                 if (![AppUtil isNullOrEmpty: domain] && ![AppUtil isNullOrEmpty: port] && ![AppUtil isNullOrEmpty: USERNAME] && ![AppUtil isNullOrEmpty: port])
                 {
-                    
+
                 }else{
                     //  reset value
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserActivity];
                     [[NSUserDefaults standardUserDefaults] removeObjectForKey:UserActivityName];
                     [[NSUserDefaults standardUserDefaults] synchronize];
-                    
+
                     [self.window makeToast:@"Không thể gọi lúc này. Có lẽ bạn chưa đăng nhập tài khoản!" duration:3.0 position:CSToastPositionCenter];
                 }
             }
@@ -777,8 +779,6 @@ AppDelegate      *app;
         transportConfig.port = [port intValue];
         
         pjsua_transport_create(PJSIP_TRANSPORT_UDP, &transportConfig, NULL);
-        //  pjsua_transport_create(PJSIP_TRANSPORT_TCP, &transportConfig, NULL);
-        //  ua_cfg.use_srtp = PJMEDIA_SRTP_OPTIONAL;
         
         pjsua_start();
     }else{
@@ -842,6 +842,7 @@ AppDelegate      *app;
 
         NSString *strAgent = @"VFONE";
         strAgent = SFM(@"%@_%@_iOS%@", strAgent, [DeviceUtil deviceModelIdentifier], UIDevice.currentDevice.systemVersion);
+
         pjsip_generic_string_hdr CustomHeader;
         pj_str_t name = pj_str("User-Agent");
         pj_str_t value = pj_str((char *)[strAgent UTF8String]);
@@ -885,18 +886,10 @@ AppDelegate      *app;
 
 - (void)refreshSIPRegistration
 {
-    int numAccount = pjsua_acc_get_count();
-    if (numAccount > 0) {
-        [self deleteSIPAccountDefault];
-        pjsua_destroy();
-        [self startPjsuaForApp];
-        [self tryToReRegisterToSIP];
-    }else{
-        if (pjsua_get_state() == PJSUA_STATE_NULL) {
-            [self startPjsuaForApp];
-        }
-        [self tryToReRegisterToSIP];
-    }
+    [self deleteSIPAccountDefault];
+    pjsua_destroy();
+    [self startPjsuaForApp];
+    [self performSelector:@selector(tryToReRegisterToSIP) withObject:nil afterDelay:0.5];
 }
 
 - (void)tryToReRegisterToSIP {
@@ -944,6 +937,7 @@ static void on_incoming_call(pjsua_acc_id acc_id, pjsua_call_id call_id, pjsip_r
             [[NSUserDefaults standardUserDefaults] setObject:caller forKey:key];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }
+
         [app.del reportIncomingCallwithUUID:uuid handle:app.remoteNumber caller_name:caller video:FALSE];
     }
     //  PJ_LOG(3,(THIS_FILE, "Incoming call from %.*s!!", (int)ci.remote_info.slen,ci.remote_info.ptr));
@@ -996,7 +990,7 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:notifCallStateChanged object:info];
-
+    
     if (ci.state == PJSIP_INV_STATE_DISCONNECTED)
     {
         //  reset remoteNumber
@@ -1045,8 +1039,6 @@ static void on_call_state(pjsua_call_id call_id, pjsip_event *e)
                 [app.del.uuids removeObjectForKey: callId];
                 [app.del.calls removeObjectForKey: uuid];
 
-                NSLog(@"uuid: %@", uuid);
-
                 CXEndCallAction *act = [[CXEndCallAction alloc] initWithCallUUID:uuid];
                 CXTransaction *tr = [[CXTransaction alloc] initWithAction:act];
 
@@ -1073,7 +1065,6 @@ static void on_reg_state(pjsua_acc_id acc_id)
     pjsua_acc_get_info(acc_id, &info);
 
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"registration state: %d", info.status);
         if (info.status == PJSIP_SC_OK) {
             //  Lưu acc_id khi register thành công (vì bây giờ chưa tìm được cách lấy ds account từ PJSIP)
             [app checkToCallPhoneNumberFromPhoneCallHistory];
@@ -1821,10 +1812,6 @@ static void on_call_transfer_status(pjsua_call_id call_id, int status_code, cons
             loc_key = [alert objectForKey:@"loc-key"];
             /*if we receive a remote notification, it is probably because our TCP background socket was no more working.
              As a result, break it and refresh registers in order to make sure to receive incoming INVITE or MESSAGE*/
-            if (![DeviceUtil checkNetworkAvailable]) {
-                [self.window makeToast:pls_check_your_network_connection duration:2.0 position:CSToastPositionCenter style:errorStyle];
-                return;
-            }
             
             if (loc_key != nil) {
                 //  callId = [userInfo objectForKey:@"call-id"];

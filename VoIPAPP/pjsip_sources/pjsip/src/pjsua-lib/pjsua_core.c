@@ -866,7 +866,7 @@ static pj_bool_t mod_pjsua_on_rx_request(pjsip_rx_data *rdata)
         
         result = strstr(package, "m=audio");
         if (result != NULL) {
-            char substr[200] = "";
+            char substr[1000] = "";
             int count = 0;
             for (int i=0; i<strlen(result); i++) {
                 char c = result[i];
